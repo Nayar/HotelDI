@@ -32,3 +32,11 @@ class BookingTestCase(TestCase):
 
         rooms = Room.search("2022-09-22","2022-09-23")
         self.assertEqual(len(rooms), 0)
+
+        rooms = Room.search("2022-09-26","2022-09-28")
+        self.assertEqual(len(rooms), 2)
+
+        rooms[1].book("2022-09-27","2022-09-28","njoof")
+
+        rooms = Room.search("2022-09-26","2022-09-28")
+        self.assertEqual(len(rooms), 1)

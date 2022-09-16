@@ -43,8 +43,8 @@ class Room(models.Model):
         for room in rooms:
             bookings = Booking.objects.filter(
                     models.Q(room=room) & (
-                    models.Q(checkin_date__gte=date_in) & models.Q(checkin_date__lte=date_out) |
-                    models.Q(checkout_date__gte=date_in) & models.Q(checkout_date__lte=date_out)
+                    models.Q(checkin_date__lte=date_in) & models.Q(checkout_date__gte=date_in) |
+                    models.Q(checkin_date__lte=date_out) & models.Q(checkout_date__gte=date_out)
                 ))
             if(len(bookings) == 0):
                 available_rooms.append(room)
